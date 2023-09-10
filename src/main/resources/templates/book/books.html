@@ -274,9 +274,11 @@
                     axios.post('/bookcondition/save', params).then(function (response) {
 
                         if (response.data.code == 0) {
+                            console.log
                             vBookList.showAlertMsg = true;
                             vBookList.searchMsgs.push('【' + vBookList.conditionName + '】を保存完了しました。');
                             vBookList.showAlertMsgType = 'info'
+                            vBookList.showAlert();
                         } else {
                             if (response.data.code == 99 && response.data.messages.length > 0) {
 
