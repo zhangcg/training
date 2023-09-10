@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.co.picasoft.training.common.Result;
 import jp.co.picasoft.training.common.bean.Booktable;
 import jp.co.picasoft.training.common.mapper.BooktableMapper;
 

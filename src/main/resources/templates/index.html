@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="common/common :: meta_header('ホーム',~{::link},~{::script})">
+<head th:replace="~{common/common :: meta_header('ホーム',~{::link},~{::script})}">
     <link rel="stylesheet" th:href="@{/css/index/index.css}" />
 </head>
 
 <body>
     <!-- ヘッダの読み込む -->
-    <div th:replace="common/common :: header"></div>
+    <div th:replace="~{common/common :: header}"></div>
     <!-- メニューの読み込む -->
-    <div th:replace="common/common :: menu"></div>
+    <div th:replace="~{common/common :: menu}"></div>
     
     <div class="row justify-content-md-center">
         <div sm="8">
