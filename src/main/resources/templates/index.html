@@ -10,13 +10,49 @@
     <div th:replace="~{common/common :: header}"></div>
     <!-- メニューの読み込む -->
     <div th:replace="~{common/common :: menu}"></div>
-    
+
     <div class="row justify-content-md-center">
-        <div sm="8">
+        <div id="main" sm="8">
             <h1 style="text-indent: 2rem;">
-                本システムは社内教育システムとします。<br>
+                本システムは図書館総合管理システムとします。<br>
             </h1>
             <p class="text-danger">※左のメニューから各サブシステムに遷移してください。</p>
+            <my-list book-name="テスト"></my-list>
         </div>
     </div>
+    <script>
+        var app = new Vue({
+            el: '#main',
+
+            /* == data == リアクティブなデータを登録 */
+            data() {
+                return {
+                    pagetitle: "CDN版Vue2の雛形",
+                    win_width: 0,
+                };
+            },
+
+            /* == mounted == DOMが作成された直後 */
+            mounted() {
+
+                // -- Windowのサイズ変化を監視
+                const _this = this;
+                const resizeObserver = new ResizeObserver(entries => {
+                    for (let entry of entries) {
+                        _this.win_width = entry.contentRect.width;
+                    }
+                });
+                resizeObserver.observe(document.querySelector('body'));
+            },
+
+            /* ==== components ==== */
+            // -- 単一ファイルコンポーネントの登録
+            components: {
+                'my-header': httpVueLoader('./components/my-header.vue'),
+                'my-movies': httpVueLoader('./components/my-movies.vue'),
+                'my-list': httpVueLoader('./components/my-list.vue'),
+            },
+
+        });
+    </script>
 </body>

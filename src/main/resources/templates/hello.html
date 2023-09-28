@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!-- (1)共通headerで置き換える -->
 
-<head th:replace="~{common/common :: meta_header('ブック',~{::link},~{::script})}">
+<head th:replace="~{common/common :: meta_header('挨拶',~{::link},~{::script})}">
     <!-- (2)このページ固有で読み込むCSS/JS -->
     <link rel="stylesheet" th:href="@{/css/book/book-list.css}" />
 </head>
@@ -16,14 +16,25 @@
         <h1>ブック管理一覧画面</h1>
     </div>
     <div id="book-list" v-cloak>
-        TODO
+        <b-form-group label="Text input with formatter (on input)" label-for="input-formatter"
+            description="We will convert your name to lowercase instantly" class="mb-0">
+            <b-form-input id="input-formatter" v-model="text1" placeholder="Enter your name"
+                :formatter="formatter"></b-form-input>
+        </b-form-group>
+        <p><b>Value:</b> {{ text1 }}</p>
+        <p v-model="name"></p>
     </div>
     <script>
         const vBookList = new Vue({
             el: "#book-list",
             data: {
+                text1: '',
+                name: 'hehe'
             },
             methods: {
+                formatter(value) {
+                    return value.toLowerCase()
+                }
             },
             async mounted() {
             }

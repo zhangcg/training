@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{common/common :: meta_header('ホーム',~{::link},~{::script})}">
+    <link rel="stylesheet" th:href="@{/css/index/index.css}" />
+</head>
+
+<body>
+    <!-- ヘッダの読み込む -->
+    <div th:replace="~{common/common :: header}"></div>
+    <!-- メニューの読み込む -->
+    <div th:replace="~{common/common :: menu}"></div>
+
+    <div id="app">
+        <b-form-input v-model="name" placeholder="Enter your name"></b-form-input>
+        <b-button @click="setNameWithDateTime">Set the name with current datetime</b-button>
+        <div class="mt-2">Value: {{ name }}</div>
+    </div>
+    <script>
+        const vApp = new Vue({
+            el: "#app",
+            data: {
+                name: ""
+            },
+            methods:{
+                setNameWithDateTime: function() {
+                    axios.get('/systemdate/getsystemdate').then((res) => {this.name = res.data.systemDate});
+                }
+            }
+        })
+    </script>
+</body>
